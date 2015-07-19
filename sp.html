@@ -1,0 +1,182 @@
+<!DOCTPYE html>
+<html>
+<head>
+	<title> Sketch-Pad </title>
+	<link type = "text/css" rel = "stylesheet" href = "sp.css">
+	<style>
+		body {
+			margin : auto;
+		}
+		div.container {
+			height : 600px;
+			width : 600px;
+			margin-left : 350px;
+			margin-top : 60px;
+		}
+		button#but {
+			position : absolute;
+			margin-left : 370px;
+			margin-top : -40px;
+			width : 100px;
+			height : 30px;
+		}
+		button#col {
+			position : absolute;
+			margin-left : 500px;
+			margin-top : -40px;
+			width : 100px;
+			height : 30px;
+		}
+		button#res {
+			position : absolute;
+			margin-left : 630px;
+			margin-top : -40px;
+			width : 100px;
+			height : 30px;
+		}
+		button#fade {
+			position : absolute;
+			margin-left : 760px;
+			margin-top : -40px;
+			width : 100px;
+			height : 30px;
+		}
+		div div {
+			outline : 1px solid white;
+			float : left;
+			background-color : black;
+			opacity : 0.1;
+		}
+	</style>
+</head>
+<body>
+	<script type = "text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" > </script>
+	<button id = "but" > Normal Grid! </button>
+	<button id = "col" > Color Grid! </button>
+	<button id = "res"> Reset! </button>
+	<button id = "fade"> Gradient Grid! </button>
+	<div class = "container" ></div>
+	<script type = "text/javascript">	
+			var master = 0;
+			var type = "";
+			$("#fade").click(function() {
+				var size = prompt("Enter the size of your N x N grid");
+				if( size ) {
+					$(".container").html('');
+					var height = 600 / size;
+					for( var i = 0; i < size * size; i++ ) {
+						$(".container").append("<div></div>");
+					}
+					$('div div').css("height",height);
+					$('div div').css("width",height);
+					master = size;
+					type = "gradient";
+					$('div div').mouseenter(function() {
+						var opa = $(this).css("opacity");
+						if( opa < 1 )
+							$(this).css("opacity", opa * 1.35 );
+					});
+				}
+			});
+			$("#but").click(function() {
+			var size = prompt("Enter the size of your N x N grid");
+			if( size ) {
+				$(".container").html('');
+				var height = 600 / size;
+				for( var i = 0; i < size * size; i++ ) {
+					$(".container").append("<div></div>");
+				}
+				$('div div').css("width", height);
+				$('div div').css("height", height);
+			$('div div').hover(function() {
+				$(this).css("background-color", "#909090");
+				$(this).css("opacity",1);
+				});
+			}
+			master = size;
+			type = "simple";
+		});
+			$("#col").click(function() {
+			var size = prompt("Enter the size of you N x N grid");
+			if( size ) {
+				$(".container").html('');
+				var height = 600 / size;
+				for( var i = 0; i < size * size; i++ ) {
+					$(".container").append("<div></div>");
+				}
+				$('div div').css("width", height);
+				$('div div').css("height", height);
+				for( var j = 0; j < 256; j++ ) {
+					$(".container").append("<div></div>");
+				}
+				$("div div").hover(function() {
+					var r = Math.floor( (Math.random() * 254) + 1 );
+					var b = Math.floor( (Math.random() * 254) + 1 );
+					var g = Math.floor( (Math.random() * 254) + 1 );
+					var color = "rgb(";
+					color += r.toString();
+					color += ",";
+					color += g.toString();
+					color += ",";
+					color += b.toString();
+					color += ")";
+					$(this).css("background-color", color );
+					$(this).css("opacity", 1);
+				});
+			}	
+			master = size;
+			type = "color";
+		});
+		$("#res").click(function() {
+				$(".container").html('');
+				var height = 600 / master;
+				for( var i = 0; i < master * master; i++ ) {
+					$(".container").append("<div></div>");
+				}
+				$('div div').css("width", height);
+				$('div div').css("height", height);
+				if( type === "color" ) {
+					for( var j = 0; j < 256; j++ ) {
+					$(".container").append("<div></div>");
+				}
+				$("div div").hover(function() {
+					var r = Math.floor( (Math.random() * 254) + 1 );
+					var b = Math.floor( (Math.random() * 254) + 1 );
+					var g = Math.floor( (Math.random() * 254) + 1 );
+					var color = "rgb(";
+					color += r.toString();
+					color += ",";
+					color += g.toString();
+					color += ",";
+					color += b.toString();
+					color += ")";
+					$(this).css("background-color", color );
+					$(this).css("opacity",1);
+				});
+			}
+			else if( type === "color") {
+				$('div div').hover(function() {
+				$(this).css("background-color", "#909090");
+				$(this).css("opacity",1);
+				});
+			}
+			else {
+				$(".container").html('');
+				var height = 600 / master;
+				for( var i = 0; i < master * master; i++ ) {
+					$(".container").append("<div></div>");
+				}
+				$('div div').css("height",height);
+				$('div div').css("width",height);
+				type = "gradient";
+				$('div div').mouseenter(function() {
+					var opa = $(this).css("opacity");
+					if( opa < 1 )
+						$(this).css("opacity", opa * 1.25 );
+				});	
+			}
+		});		
+	</script>
+</body>
+</html>
+

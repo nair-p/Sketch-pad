@@ -1,0 +1,9 @@
+table {
+	border-radius : 10px;
+	}
+ #1 {
+	border-radius : 10px;
+	width : 100px;
+	height  : 100px;
+	border-color : black;
+	}
