@@ -2,6 +2,8 @@
 Just a sketchpad made using basic HTML, CSS and jquery. Hovering over the grid will color it and hence allow you to sketch your image!
 
 There are 4 buttons avaiable.
+
+![alt tag](/home/pnair/my_stuff/html/Web Development/the_odin_project/Sketch-pad/initial.jpeg)
 Each of them when pressed, prompt the user for a grid size and creates a grid of the corresponding size.
 
 The "normal grid" button changes the color of the grid cells to a dark grey by hovering over them.
